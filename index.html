@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamify - Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-music"></i>
+                <h2>Streamify</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><i class="fa-solid fa-house"></i> Home</li>
+                    <li><i class="fa-solid fa-magnifying-glass"></i> Search</li>
+                    <li><i class="fa-solid fa-compact-disc"></i> Library</li>
+                </ul>
+            </nav>
+            <div class="admin-link">
+                <a href="admin.html"><i class="fa-solid fa-gear"></i> Admin Panel</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Search for songs, artists, or albums...">
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=random" alt="User">
+                </div>
+            </header>
+
+            <section class="explore-section">
+                <h2>Explore</h2>
+                <div class="loading" id="loadingIndicator">Loading songs...</div>
+                <div class="songs-grid" id="songsGrid">
+                    <!-- Songs will be populated here by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Music Player (Bottom Bar) -->
+    <div class="player-container">
+        <div class="now-playing" id="nowPlaying">
+            <img src="https://via.placeholder.com/150/121212/121212" alt="Cover" id="playerCover">
+            <div class="track-info">
+                <h4 id="playerTitle">No track selected</h4>
+                <p id="playerArtist">-</p>
+            </div>
+        </div>
+
+        <div class="player-controls">
+            <div class="control-buttons">
+                <button id="prevBtn"><i class="fa-solid fa-backward-step"></i></button>
+                <button id="playPauseBtn" class="play-btn"><i class="fa-solid fa-play"></i></button>
+                <button id="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
+            </div>
+            <div class="progress-container">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" min="0" max="100" step="1">
+                <span id="totalTime">0:00</span>
+            </div>
+        </div>
+
+        <div class="volume-controls">
+            <i class="fa-solid fa-volume-high" id="volumeIcon"></i>
+            <input type="range" id="volumeBar" value="100" min="0" max="100">
+        </div>
+    </div>
+
+    <!-- Hidden audio element -->
+    <audio id="audioElement"></audio>
+
+    <script src="supabase-client.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
